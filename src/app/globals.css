@@ -1,11 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html { scroll-behavior: smooth; }
+
 .navbar {
   background: inherit;
   mix-blend-mode: difference;
 
 }
+
 
 a:hover {
   cursor: pointer;
@@ -19,6 +23,60 @@ a:hover {
 }
 
 .chapters-btn {
-  background: #ffffff;
-  mix-blend-mode: difference;
+  background: black;
+
+  border: 1px solid rgba(0, 0, 0, 0.5);
+
+  background-image:
+    linear-gradient(to top, black 50%, #fff 50%),
+    linear-gradient(to top, white 50%, transparent 50%);
+
+  background-clip: text, padding-box;
+  color: transparent;
+  background-size: 100% 200%;
+  background-position: top;
+  transition: background-position 0.25s ease-in-out;
+  animation: 1.33s bounce 550ms linear;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translate(-50%, 0);
+  }
+
+  25%, 75% {
+    transform: translate(-50%, 15%);
+  }
+
+  50% {
+    transform: translate(-50%, 5%);
+  }
+}
+
+.chapters-btn:hover {
+  background-position: bottom;
+}
+
+.banner {
+  opacity: 1;
+  transform: translate(0, 0);
+  animation: fadeIn 500ms ease-in-out;
+}
+
+@keyframes fadeIn {
+  0%, 20%, 30%  { opacity: 0; transform: translate(0, 0) scale(0) }
+  40% { opacity: 0.3;  transform: translate(0, 0) scale(0.3)}
+  60% { opacity: 0.5; transform: translate(0, 0) scale(0.5)}
+  80% { opacity: 0.9; transform: translate(0, 0) scale(0.9)}
+  100% { opacity: 1;  transform: translate(0, 0) scale(1)}
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.slides ::-webkit-scrollbar {
+	display: none;
+}
+
+.slides {
+	-ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
