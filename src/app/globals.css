@@ -2,10 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-html { scroll-behavior: smooth; 	-ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none; }
+html {
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;
+}
 
-:-webkit-scrollbar {
+::-webkit-scrollbar {
 	display: none;
 }
 
@@ -79,29 +82,10 @@ a:hover {
   100% { opacity: 1;  transform: translate(0, 0) scale(1)}
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
-.slides ::-webkit-scrollbar {
+.modal {
+  scrollbar-width: none;
+}
+
+.modal::-webkit-scrollbar {
 	display: none;
-}
-
-.slides {
-	-ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-}
-
-.slick-track {
-  display: flex;
-  align-items: flex-end;
-}
-
-.slick-dots {
-  bottom: -60px;
-
-  @media (min-width: 640px) {
-    bottom: -40px
-  }
-}
-
-.slick-dots li button:before, .slick-dots li.slick-active button:before {
-  color: white
 }
