@@ -2,14 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; 	-ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none; }
+
+:-webkit-scrollbar {
+	display: none;
+}
+
+body {
+  scrollbar-width: none;  /* Firefox */
+}
 
 .navbar {
   background: inherit;
   mix-blend-mode: difference;
 
 }
-
 
 a:hover {
   cursor: pointer;
@@ -25,7 +33,7 @@ a:hover {
 .chapters-btn {
   background: black;
 
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.33);
 
   background-image:
     linear-gradient(to top, black 50%, #fff 50%),
@@ -36,7 +44,7 @@ a:hover {
   background-size: 100% 200%;
   background-position: top;
   transition: background-position 0.25s ease-in-out;
-  animation: 1.33s bounce 550ms linear;
+  animation: 1.33s bounce 600ms linear;
 }
 
 @keyframes bounce {
@@ -79,4 +87,21 @@ a:hover {
 .slides {
 	-ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+}
+
+.slick-track {
+  display: flex;
+  align-items: flex-end;
+}
+
+.slick-dots {
+  bottom: -60px;
+
+  @media (min-width: 640px) {
+    bottom: -40px
+  }
+}
+
+.slick-dots li button:before, .slick-dots li.slick-active button:before {
+  color: white
 }

@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "./globals.css";
+import { Providers } from "./provider";
 
 const font = Space_Grotesk({ subsets: ["latin"] });
 
@@ -16,7 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={font.className}>{children}</body>
+      <body className={font.className}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
