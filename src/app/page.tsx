@@ -34,15 +34,14 @@ export default function Home() {
 
       <section className={`${sectionClassName} bg-white`}>
         <div className="banner">
-          <p className="font-thin text-xs md:text-sm lg:text-md -mb-4 md:-mb-8 lg:-mb-12 font-serif italic text-right w-full">
-            Netlify
-          </p>
-
-          <p className="main-text text-9xl text-center font-medium">
+          <p className="main-text text-9xl text-center font-medium relative">
+            <span className="absolute top-1/3 -translate-y-full -mt-1 sm:mt-0: right-0 font-thin text-xs sm:text-sm md:text-md lg:text-md font-serif italic text-right w-full">
+              Netlify
+            </span>
             Gallery
           </p>
 
-          <p className="text-md mt-3 md:mt-4 lg:mt-6">
+          <p className="text-xs sm:text-sm md:text-md mt-0">
             curated by{" "}
             <a
               href="https://github.com/arndom"
@@ -93,7 +92,7 @@ export default function Home() {
               className={`${sectionClassName} bg-black px-8 overflow-hidden w-full`}
             >
               <div className="container relative">
-                <Slider {...settings}>
+                <Slider {...settings} className="hover:cursor-pointer">
                   {images.map((img, ind) => (
                     <div key={img.image} className="sticky group">
                       <Image

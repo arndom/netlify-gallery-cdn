@@ -8,7 +8,7 @@ import { Providers } from "./provider";
 const font = Space_Grotesk({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Gallery Demo",
+  title: "Net Gala",
   description: "A Curated Image Gallery showcasing Netlify's Image CDN",
 };
 

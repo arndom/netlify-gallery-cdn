@@ -27,7 +27,7 @@ a:hover {
   filter: invert(1);
 }
 .main-text {
-  font-size: clamp(3.25rem, 0.3891rem + 12.2066vw, 11.375rem);
+  font-size: clamp(4.375rem, 0.1937rem + 17.8404vw, 16.25rem);
 }
 
 .chapters-btn {
