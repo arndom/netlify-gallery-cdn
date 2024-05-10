@@ -1,85 +1,35 @@
 "use client";
 
-import { images } from "@/data";
+import { useState } from "react";
+import { TransformsT, defaultTransforms, images } from "@/data";
 import { ImageLoaderProps } from "next/image";
-import { Modal, ModalContent, useDisclosure } from "@nextui-org/modal";
+import { ModalContent, useDisclosure } from "@nextui-org/modal";
 import GalleryImage from "@/components/gallery-image";
+import ImageTransforms from "@/components/image-transforms";
+import Nav from "@/components/nav";
+import Banner from "@/components/banner";
+import ModalWrapper from "@/components/modal-wrapper";
 
 export default function Home() {
-  const sectionClassName =
-    "flex min-h-screen flex-col items-center justify-center text-center";
-  const buttonClassName =
-    "chapters-btn fixed bottom-10 left-1/2 -translate-x-1/2 z-10 px-[1.25rem] py-[.6875rem] rounded-full font-extrabold uppercase text-sm";
-
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [transforms, setTransforms] = useState<TransformsT>(defaultTransforms);
+
+  const resetTransforms = () => setTransforms(defaultTransforms);
+
   const loadImage = (args: ImageLoaderProps) => {
     const { src } = args;
 
-    return `.netlify/images?url=${src}&w=${280}&h=${280}&q=${75}&fit=${"cover"}&fm=${"png"}`;
+    return `.netlify/images?url=${src}&w=${transforms.width}&h=${transforms.height}&q=${transforms.quality}&fit=${transforms.fit}&fm=${transforms.format}`;
   };
+
+  console.log(transforms);
 
   return (
     <main className="min-h-screen">
-      <div className="navbar fixed top-0 w-full p-8 z-10 flex justify-between font-bold uppercase text-sm">
-        <a href="#">Net Gala</a>
-        <a href="#credits">Credits</a>
-      </div>
+      <Nav />
+      <Banner />
 
-      <section className={`${sectionClassName} bg-white`}>
-        <div className="banner">
-          <p className="main-text text-9xl text-center font-medium relative">
-            <span className="absolute top-1/3 -translate-y-full -mt-1 sm:mt-0: right-0 font-thin text-xs sm:text-sm md:text-md lg:text-md font-serif italic text-right w-full">
-              Netlify
-            </span>
-            Gallery
-          </p>
-
-          <p className="text-xs sm:text-sm md:text-md mt-0">
-            curated by{" "}
-            <a
-              href="https://github.com/arndom"
-              target="__blank"
-              className="underline underline-offset-4"
-            >
-              @arndom
-            </a>
-          </p>
-        </div>
-      </section>
-
-      <Modal
-        isOpen={isOpen}
-        onOpenChange={onOpenChange}
-        placement="bottom-center"
-        size="full"
-        scrollBehavior="outside"
-        motionProps={{
-          variants: {
-            enter: {
-              y: 0,
-              opacity: 1,
-              transition: {
-                duration: 0.3,
-                ease: "linear",
-              },
-            },
-            exit: {
-              y: 200,
-              opacity: 0,
-              transition: {
-                duration: 0.2,
-                ease: "linear",
-              },
-            },
-          },
-        }}
-        classNames={{
-          backdrop: "z-8",
-          base: "z-8  mt-0",
-          wrapper: "z-8 overflow-hidden",
-          closeButton: "hidden",
-        }}
-      >
+      <ModalWrapper isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <div className="h-screen bg-black w-full py-24 overflow-y-auto modal">
@@ -92,28 +42,32 @@ export default function Home() {
                         loadImage,
                         src: img.image,
                         alt: "slide-" + (ind + 1),
+                        transforms,
                       }}
                     />
                   );
                 })}
               </div>
 
-              <button onClick={onClose} className={buttonClassName}>
-                close
-                {/* <span>X</span> */}
+              <ImageTransforms
+                {...{ transforms, setTransforms, resetTransforms }}
+              />
+
+              <button
+                onClick={onClose}
+                className="chapters-btn fixed bottom-[90px] left-1/2 -translate-x-1/2 z-10 w-[44px] h-[44px] rounded-full font-semibold text-sm"
+              >
+                Exit
               </button>
             </div>
           )}
         </ModalContent>
-      </Modal>
+      </ModalWrapper>
 
-      <section
-        id="credits"
-        className={`${sectionClassName} bg-black`}
-      ></section>
+      <section id="credits" className="section bg-black"></section>
 
       {!isOpen && (
-        <button onClick={onOpen} className={buttonClassName}>
+        <button onClick={onOpen} className="styled-btn">
           content
         </button>
       )}

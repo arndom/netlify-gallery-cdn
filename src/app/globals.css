@@ -50,6 +50,21 @@ a:hover {
   animation: 1.33s bounce 600ms linear;
 }
 
+.chapters-btn[data-hover=true] {
+  opacity: 1 !important;
+}
+.styled-btn {
+  @apply chapters-btn fixed bottom-10 left-1/2 -translate-x-1/2 z-10 px-[1.25rem] py-[.6875rem] rounded-full font-extrabold uppercase text-sm;
+}
+
+.section {
+  @apply flex min-h-screen flex-col items-center justify-center text-center;
+}
+
+.unanimated {
+  animation: none;
+}
+
 @keyframes bounce {
   0%, 100% {
     transform: translate(-50%, 0);
