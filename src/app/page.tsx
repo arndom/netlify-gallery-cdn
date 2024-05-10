@@ -22,8 +22,6 @@ export default function Home() {
     return `.netlify/images?url=${src}&w=${transforms.width}&h=${transforms.height}&q=${transforms.quality}&fit=${transforms.fit}&fm=${transforms.format}`;
   };
 
-  console.log(transforms);
-
   return (
     <main className="min-h-screen">
       <Nav />
