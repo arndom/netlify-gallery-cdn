@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@nextui-org/react": "^2.3.6",
+    "blurhash": "^2.0.5",
     "framer-motion": "^11.1.9",
     "next": "14.2.3",
     "react": "^18",

@@ -1,12 +1,9 @@
 "use client";
 
 import { images } from "@/data";
-import Image, { ImageLoaderProps } from "next/image";
-import {
-  Modal,
-  ModalContent,
-  useDisclosure,
-} from "@nextui-org/modal";
+import { ImageLoaderProps } from "next/image";
+import { Modal, ModalContent, useDisclosure } from "@nextui-org/modal";
+import GalleryImage from "@/components/gallery-image";
 
 export default function Home() {
   const sectionClassName =
@@ -18,9 +15,8 @@ export default function Home() {
   const loadImage = (args: ImageLoaderProps) => {
     const { src } = args;
 
-    // prod
     return `.netlify/images?url=${src}&w=${280}&h=${280}&q=${75}&fit=${"cover"}&fm=${"png"}`;
-  }
+  };
 
   return (
     <main className="min-h-screen">
@@ -89,40 +85,22 @@ export default function Home() {
             <div className="h-screen bg-black w-full py-24 overflow-y-auto modal">
               <div className="mx-12 flex flex-wrap gap-4 items-center justify-center">
                 {images.map((img, ind) => {
-                  const check = process.env.NEXT_PUBLIC_ENV === "dev";
-
-                  const loadImageProp = {
-                    loader: loadImage,
-                  }
-
-                  const defaultDataURL = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCACJAIkDASIAAhEBAxEB/8QAGgABAQEBAQEBAAAAAAAAAAAAAwIBAAQGBf/EABgQAQEBAQEAAAAAAAAAAAAAAAABAhED/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APpqjSqjQD2DZtg2Adh0XYdAlUS2ATJMjySAuOdHAnQdl0LYPP6PN6PT6PNsAaY3TAfZWo1W2o1QRug2XVDugHYtE3RaBKohUAmSQWSQCRzJXdBOhbJqi2ANvPt6NvNsA6SrSQfXdTqu6i0E6od0mqHdAWqLVJqitBnVSo62UC5pJQ5pJQJK7qZXdB2qLdXaLVAOwbNsGwDpjdJB9V1FruotBmqHVXqi1QRqitVqjtB3VSo62UCyrlFKuUCSu6nrug60Wqu0eqAtg2bYNgOpbWA+k6m1nU2gzVFqq1R6oD1UWq1R2g7rZU9bKBJVyjlXKC+t6nrugy0equ0egHsOi6DoB1jawH7/AFNruptBOqPVXqi1QRqjq9DoOVENgEi5RxcBfXdY4HUel0egHoOi6FoB1jawH7qa1NBOhaJoWgRodXodByohUBcXERcBTnRwMqNKqNAPQtF0LQDrG1gP22VqaCND0TQtAPSKvSKDGxjYC4uIi4Co1kcDKjS6jQC0PRND0A6xtcD9pNUmgjQtF0LQD0Ok0OgxUSqAuLiIuAqOdHAyo0uo0AtD0TQ9AOudXA//2Q==";
-                  const blurDataURLProp = {
-                    blurDataURL: check ? defaultDataURL : `.netlify/images?url=${img.image}&w=${280}&h=${280}&fm=blurhash`
-                  }
-
                   return (
-                    <div key={img.image}>
-                      <Image
-                        {...(!check && loadImageProp)}
-                        src={img.image}
-                        alt={"slide-" + (ind + 1)}
-                        width={280}
-                        height={280}
-                        placeholder="blur"
-                        {...blurDataURLProp}
-                        quality={100}
-                        style={{
-                          width: 280,
-                          height: 280,
-                          objectFit: "cover",
-                        }}
-                      />
-                    </div>
+                    <GalleryImage
+                      key={img.image}
+                      {...{
+                        loadImage,
+                        src: img.image,
+                        alt: "slide-" + (ind + 1),
+                      }}
+                    />
                   );
                 })}
               </div>
+
               <button onClick={onClose} className={buttonClassName}>
                 close
+                {/* <span>X</span> */}
               </button>
             </div>
           )}
