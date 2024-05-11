@@ -18,6 +18,8 @@ A simple gallery showcasing Netlify's Image CDN transformations
 # install dependencies
 npm i
 
+# check .env.example for variables
+
 # run locally
 npm run dev
 ```
