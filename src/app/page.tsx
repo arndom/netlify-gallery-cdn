@@ -42,6 +42,7 @@ export default function Home() {
                         src: img.image,
                         alt: "slide-" + (ind + 1),
                         transforms,
+                        attr: img.attr
                       }}
                     />
                   );

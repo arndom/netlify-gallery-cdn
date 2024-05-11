@@ -214,3 +214,14 @@ a:hover {
     100% { transform: translateX(100%); }
   }
 }
+
+.attr > a {
+  transition: all 150ms;
+}
+
+.attr > a:hover,
+.attr > a:focus {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  color: hsl(179, 78%, 60%);
+}
