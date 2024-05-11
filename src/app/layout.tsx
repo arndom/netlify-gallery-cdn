@@ -7,12 +7,12 @@ const font = Space_Grotesk({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Net Gala",
-  description: "A Curated Image Gallery showcasing Netlify's Image CDN",
+  description: "A curated gallery showcasing Netlify's Image CDN",
   keywords: ["met gala", "gallery", "demo", "dev.to", "netlify", "cdn", "netlify image cdn", "arndom"],
   metadataBase: new URL("https://net-gala.netlify.app/"),
   openGraph: {
     title: "Net Gala",
-    description: "A Curated Image Gallery showcasing Netlify's Image CDN",
+    description: "A curated gallery showcasing Netlify's Image CDN",
     url: "https://net-gala.netlify.app/",
     siteName: "Net Gala",
     locale: "en_US",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     title: "Net Gala",
-    description: "A Curated Image Gallery showcasing Netlify's Image CDN",
+    description: "A Curated Gallery showcasing Netlify's Image CDN",
     card: "summary_large_image",
     images: "/banner.png"
   }
