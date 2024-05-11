@@ -9,11 +9,12 @@ import ImageTransforms from "@/components/image-transforms";
 import Nav from "@/components/nav";
 import Banner from "@/components/banner";
 import ModalWrapper from "@/components/modal-wrapper";
+import Credits from "@/components/credits";
 
 export default function Home() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [transforms, setTransforms] = useState<TransformsT>(defaultTransforms);
 
+  const [transforms, setTransforms] = useState<TransformsT>(defaultTransforms);
   const resetTransforms = () => setTransforms(defaultTransforms);
 
   const loadImage = (args: ImageLoaderProps) => {
@@ -62,7 +63,7 @@ export default function Home() {
         </ModalContent>
       </ModalWrapper>
 
-      <section id="credits" className="section bg-black"></section>
+      <Credits />
 
       {!isOpen && (
         <button onClick={onOpen} className="styled-btn">

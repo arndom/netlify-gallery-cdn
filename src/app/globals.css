@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --blog-bg: white;
+  --blob-size: 25vmin;
+  --blob-effect-blur: 12px;
+  --blob-effect-contrast: 34;
+}
+
 html {
   scroll-behavior: smooth;
   -ms-overflow-style: none;  /* IE and Edge */
@@ -16,19 +23,19 @@ body {
   scrollbar-width: none;  /* Firefox */
 }
 
-.navbar {
+.navbar, .footer {
   background: inherit;
   mix-blend-mode: difference;
-
 }
 
 a:hover {
   cursor: pointer;
 }
 
-.navbar > a {
+.navbar > a, .footer > a {
   filter: invert(1);
 }
+
 .main-text {
   font-size: clamp(4.375rem, 0.1937rem + 17.8404vw, 16.25rem);
 }
@@ -103,4 +110,107 @@ a:hover {
 
 .modal::-webkit-scrollbar {
 	display: none;
+}
+.credit {
+  display: block;
+  position: relative;
+  padding: 0.2em 0;
+  @apply text-4xl md:text-5xl lg:text-6xl transition-all;
+}
+.credit::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0.1em;
+  background-color: white;
+  opacity: 0;
+  transition: opacity 300ms, transform 300ms;
+}
+
+.credit:hover::after, .credit:focus::after {
+  opacity: 1;
+  transform: translate3d(0, 0.2em, 0);
+}
+
+.credits div .credit {
+  overflow: hidden;
+}
+
+.credits div .credit::after {
+  opacity: 1;
+  transform: translate3d(-105%, 0, 0);
+}
+
+.credits div .reverse::after {
+  transform: translate3d(105%, 0, 0);
+}
+
+.credits div .credit:hover::after,
+.credits div .credit:focus::after{
+  transform: translate3d(0, 0, 0);
+}
+
+.credit-group {
+  @apply flex flex-col gap-2 text-white
+}
+
+.credit-title {
+  @apply uppercase tracking-wider ml-0 md:-ml-1 font-extralight
+}
+
+
+.blobs {
+  pointer-events: none;
+}
+
+.blob {
+  transform: translate3d(0, 0, 0);
+  background: var(--blog-bg);
+  width: var(--blob-size);
+  aspect-ratio: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  border-radius: 100%;
+}
+
+.blob:first-of-type {
+  animation: slide 4s infinite alternate ease-in-out;
+}
+
+.blob:last-of-type {
+  border: 20px solid var(--blog-bg);
+  background: transparent;
+  @media (max-width: 768px) {
+    border-width: 20px;
+  }
+}
+
+.blobs {
+  background: black;
+  width: calc(var(--blob-size) * 5);
+  height: calc(var(--blob-size) * 1.5);
+  display: grid;
+  position: relative;
+  /* The magic piece */
+  filter: blur(var(--blob-effect-blur)) contrast(var(--blob-effect-contrast));
+
+  @media (max-width: 1024px) {
+    width: calc(var(--blob-size) * 4);
+  }
+}
+
+@keyframes slide {
+  0% { transform: translateX(-150%); }
+  100% { transform: translateX(150%); }
+}
+
+@media (max-width: 768px) {
+  @keyframes slide {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
 }

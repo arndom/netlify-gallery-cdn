@@ -4,7 +4,7 @@ const Banner = () => {
   return (
     <section className="section bg-white">
       <div className="banner">
-        <p className="main-text text-9xl text-center font-medium relative">
+        <p className="main-text text-9xl text-center font-semibold relative">
           <span className="absolute top-1/3 -translate-y-full -mt-1 sm:mt-0: right-0 font-thin text-xs sm:text-sm md:text-md lg:text-md font-serif italic text-right w-full">
             Netlify
           </span>
